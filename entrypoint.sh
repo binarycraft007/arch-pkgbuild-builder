@@ -35,6 +35,7 @@ if [[ ! -e $pkgbuild_dir/.SRCINFO ]]; then
 fi
 
 getfacl -p -R "$pkgbuild_dir" /github/home > /tmp/arch-pkgbuild-builder-permissions.bak
+echo 'nobody ALL=(ALL:ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 pacman -Syu --noconfirm
 pacman -S base-devel namcap --noconfirm
