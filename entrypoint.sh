@@ -64,7 +64,7 @@ pkgname=$(grep -E 'pkgname' .SRCINFO | sed -e 's/.*= //')
 case $target in
     pkgbuild)
         namcap PKGBUILD
-        install_deps
+        #install_deps
         sudo -u nobody makepkg --syncdeps --noconfirm
 
         # shellcheck disable=SC1091
