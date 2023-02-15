@@ -37,14 +37,14 @@ fi
 getfacl -p -R "$pkgbuild_dir" /github/home > /tmp/arch-pkgbuild-builder-permissions.bak
 
 pacman -Syu --noconfirm
-pacman -S base-devel --noconfirm
+pacman -S base-devel namcap --noconfirm
 
 # '/github/workspace' is mounted as a volume and has owner set to root
 # set the owner of $pkgbuild_dir  to the 'build' user, so it can access package files.
-sudo chown -R build "$pkgbuild_dir"
+sudo chown -R nobody "$pkgbuild_dir"
 
 # needs permissions so '/github/home/.config/yay' is accessible by yay
-sudo chown -R build /github/home
+sudo chown -R nobody /github/home
 
 # use more reliable keyserver
 mkdir -p /github/home/.gnupg/
@@ -65,7 +65,7 @@ case $target in
     pkgbuild)
         namcap PKGBUILD
         install_deps
-        makepkg --syncdeps --noconfirm
+        sudo -u nobody makepkg --syncdeps --noconfirm
 
         # shellcheck disable=SC1091
         source /etc/makepkg.conf # get PKGEXT
