@@ -27,12 +27,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - repo-owner: 2m
-            repo-name: ucm-bin-pkgbuild
-            pkg-name: ucm-bin
-          - repo-owner: 2m
-            repo-name: paru-pkgbuild
-            pkg-name: .
+          - repo-owner: binarycraft007
+            repo-name: libcronet
+            pkg-name: libcronet
       fail-fast: false
 
     steps:
