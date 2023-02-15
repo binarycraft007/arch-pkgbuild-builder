@@ -75,9 +75,9 @@ case $target in
         pacman -Qlp "${pkgname}"-*"${PKGEXT}"
         ;;
     run)
-        install_deps
-        makepkg --syncdeps --noconfirm --install
-        eval "$command"
+        #install_deps
+        sudo -u nobody makepkg --syncdeps --noconfirm --install
+        #eval "$command"
         ;;
     srcinfo)
         sudo -u nobody makepkg --printsrcinfo | diff --ignore-blank-lines .SRCINFO - || \
