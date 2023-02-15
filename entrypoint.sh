@@ -36,6 +36,9 @@ fi
 
 getfacl -p -R "$pkgbuild_dir" /github/home > /tmp/arch-pkgbuild-builder-permissions.bak
 
+pacman -Syu --noconfirm
+pacman -S base-devel --noconfirm
+
 # '/github/workspace' is mounted as a volume and has owner set to root
 # set the owner of $pkgbuild_dir  to the 'build' user, so it can access package files.
 sudo chown -R build "$pkgbuild_dir"
