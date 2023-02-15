@@ -11,7 +11,7 @@ fi
 
 target=$1
 pkgname=$2
-command=$3
+#command=$3
 
 # assumes that package files are in a subdirectory
 # of the same name as "pkgname", so this works well
@@ -54,12 +54,12 @@ cd "$pkgbuild_dir"
 
 pkgname=$(grep -E 'pkgname' .SRCINFO | sed -e 's/.*= //')
 
-install_deps() {
-    # install all package dependencies
-    grep -E 'depends' .SRCINFO | \
-        sed -e 's/.*depends = //' -e 's/:.*//' | \
-        xargs yay -S --noconfirm
-}
+#install_deps() {
+#    # install all package dependencies
+#    grep -E 'depends' .SRCINFO | \
+#        sed -e 's/.*depends = //' -e 's/:.*//' | \
+#        xargs yay -S --noconfirm
+#}
 
 case $target in
     pkgbuild)
