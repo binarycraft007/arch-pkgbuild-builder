@@ -41,10 +41,10 @@ pacman -S base-devel namcap --noconfirm
 
 # '/github/workspace' is mounted as a volume and has owner set to root
 # set the owner of $pkgbuild_dir  to the 'build' user, so it can access package files.
-sudo chown -R nobody "$pkgbuild_dir"
+chown -R nobody "$pkgbuild_dir"
 
 # needs permissions so '/github/home/.config/yay' is accessible by yay
-sudo chown -R nobody /github/home
+chown -R nobody /github/home
 
 # use more reliable keyserver
 mkdir -p /github/home/.gnupg/
@@ -80,7 +80,7 @@ case $target in
         eval "$command"
         ;;
     srcinfo)
-        makepkg --printsrcinfo | diff --ignore-blank-lines .SRCINFO - || \
+        sudo -u nobody makepkg --printsrcinfo | diff --ignore-blank-lines .SRCINFO - || \
             { echo ".SRCINFO is out of sync. Please run 'makepkg --printsrcinfo' and commit the changes."; false; }
         ;;
     *)
